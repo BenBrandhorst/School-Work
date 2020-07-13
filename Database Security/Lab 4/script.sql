@@ -1,0 +1,7 @@
+CREATE TABLE Students
+(
+ID NUMBER NOT NULL,
+studentName VARCHAR2(50) NOT NULL,
+
+CONSTRAINT Students_pk PRIMARY KEY(ID)
+)

@@ -1,0 +1,139 @@
+# File: Homework2.py
+# Author: Ben Brandhorst
+# Date: April 12th, 2020
+# Purpose: SDEV400 Homework
+
+from __future__ import print_function # Python 2/3 compatibility
+import boto3
+import boto3
+import json
+import decimal
+import time
+from boto3.dynamodb.conditions import Key, Attr
+def createTable():
+# Creates the Courses table with CourseID as HASH key and a Global Secondary Index 
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.create_table(
+        TableName='Courses',
+        KeySchema=[
+            {
+                'AttributeName': 'CourseID',
+                'KeyType': 'HASH'  #Partition key
+            }
+        ],
+        AttributeDefinitions=[
+        
+            {
+                'AttributeName': 'CourseID',
+                'AttributeType': 'N'
+            },
+            {
+                'AttributeName': 'Subject',
+                'AttributeType': 'S'
+            },
+            {   'AttributeName': 'CatalogNbr',
+                'AttributeType': 'N'
+            },
+           
+        ],
+        ProvisionedThroughput={
+            'ReadCapacityUnits': 10,
+            'WriteCapacityUnits': 10
+        },
+        # Needed a GlobalSecondaryIndex to search for items without using the table key
+        GlobalSecondaryIndexes=[ 
+            { 
+                'IndexName': 'topic_index', 
+                'KeySchema':[
+                    { #Required HASH type attribute
+                        'AttributeName': 'CatalogNbr',
+                        'KeyType': 'HASH',
+                    },
+                    {   'AttributeName': 'Subject',
+                        'KeyType': 'RANGE'
+                    }    
+                ],
+                'Projection':{ 
+                    'ProjectionType': 'ALL' 
+                },
+                'ProvisionedThroughput': { 
+                    'ReadCapacityUnits': 10,
+                    'WriteCapacityUnits': 10,
+                },
+            },
+            
+        ],
+                
+                )
+
+    print("Table status:", table.table_status)
+
+def insertRecords():
+# Inserts 10 items into the Courses table with Subject, CatalogNbr, Title, 
+# NumCredits, and CourseID as attributes
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Courses')
+    subject = ["GVPT", "SDEV", "SDEV", "BIOL", "WRTG", "SDEV", "SDEV", "SDEV", "CMSC", "SDEV"]
+    catalognbr = [170, 325, 350, 103, 393, 360, 425, 400, 495, 460]
+    title = ["American Government","Detecting Software Vulnerabilities", "Database Security", 
+    "Introduction to Biology", "Advanced Technical Writing", "Secure Software Engineering", 
+    "Mitigating Software Vulnerabilities", "Secure Programming in the Cloud", 
+    "Current Trends and Projects in Computer Science", "Software Security Testing"]
+    numcredits = [3, 3, 3, 4, 3, 3, 3, 3, 3, 3,]
+    courseid = [80251, 80965, 83654, 83784, 21738, 22043, 24047, 24181, 50510, 53091]
+    length = len(subject)
+    i = 0
+    # Simple while loop to fill the table with the list contents from the variables
+    while i < length:
+        response = table.put_item(
+        Item={
+            'Subject': subject[i],
+            'CatalogNbr': catalognbr[i],
+            'Title': title[i],
+            'NumCredits': numcredits[i],
+            'CourseID': courseid[i]
+                }
+        )
+        i += 1
+    print("Course items inserted")
+
+def main():
+    # Loop to search for items in the Courses table    
+    loop=True      
+    while loop:
+        subject = input('Please enter a Subject ')
+        # Confirms user input is not empty
+        if not subject:
+            print('A subject is required')
+            continue;
+        try:
+            # We have to take the catalog input as an int in order to use it 
+            # in a query. The except is necessary to confirm input is an int.
+            catalognbr = int(input('Please enter the catalog number '))
+        except ValueError:
+            print('A catalog number is required. Please try again.')
+            continue;
+        # Conduct the actual query using the command line input and printing the
+        # Title of the course searched for
+        dynamodb = boto3.resource('dynamodb')
+        table = dynamodb.Table('Courses')
+        response = table.query(
+        IndexName='topic_index',
+        KeyConditionExpression=Key('Subject').eq(subject) & Key('CatalogNbr').eq(catalognbr)
+        )
+        for i in response['Items']:
+            print('The title of',subject,catalognbr,'is',i['Title'])  
+        answer = input('Would you like to conduct another search? Input Yes or No ')
+        # Loops back to the beginning of the function if any input other than
+        # No is detected.
+        if answer==('No'):
+            print('Thank you for using this program. Goodbye')
+            loop=False
+        else:
+            continue;
+
+createTable()
+# A delay is necessary to allow time for table creation before content is inserted
+time.sleep(20)
+insertRecords()
+main()

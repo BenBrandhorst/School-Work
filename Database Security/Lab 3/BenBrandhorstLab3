@@ -1,0 +1,60 @@
+CREATE PROFILE PBenBrandhorst LIMIT
+PASSWORD_VERIFY_FUNCTION ora12c_verify_function
+SESSIONS_PER_USER 3
+FAILED_LOGIN_ATTEMPTS 4
+PASSWORD_LIFE_TIME 120
+PASSWORD_LOCK_TIME 1/24;
+select * from DBA_PROFILES WHERE PROFILE ='PBENBRANDHORST' ORDER BY LIMIT ASC;
+
+CREATE USER U1BenBrandhorst
+IDENTIFIED BY "ExpiredPassword1"
+DEFAULT TABLESPACE Users
+QUOTA 30M on Users
+PROFILE PBenBrandhorst
+PASSWORD EXPIRE;
+
+CREATE USER U2BenBrandhorst
+IDENTIFIED BY "ExpiredPassword1"
+DEFAULT TABLESPACE Users
+QUOTA 30M on Users
+PROFILE PBenBrandhorst
+PASSWORD EXPIRE;
+
+CREATE ROLE RBenBrandhorst;
+Grant CONNECT to RBenBrandhorst;
+Grant CREATE TABLE to RBenBrandhorst;
+
+CREATE TABLE User1Data
+(
+U1ID NUMBER NOT NULL,
+Lastname VARCHAR2(50) NOT NULL,
+Firstname VARCHAR2(50) NOT NULL,
+Email VARCHAR2(254) NOT NULL,
+CONSTRAINT User1Data_pk PRIMARY KEY(U1ID)
+);
+
+CREATE TABLE User2Data
+(
+U2ID NUMBER NOT NULL,
+Lastname VARCHAR2(50) NOT NULL,
+Firstname VARCHAR2(50) NOT NULL,
+Email VARCHAR2(254) NOT NULL,
+CONSTRAINT User2Data_pk PRIMARY KEY (U2ID)
+);
+
+INSERT ALL
+INTO User1Data VALUES (1, 'Jones', 'Casey', 'Casey.Jones@email.com')
+INTO User1Data VALUES (2, 'Watts', 'Alan', 'Alan.Watts@email.com')
+INTO User1Data VALUES (3, 'Ali', 'Muhammed', 'Muhammed.Ali@email.com')
+INTO User2Data VALUES (1, 'Bush', 'George', 'George.Bush@email.com')
+INTO User2Data VALUES (2, 'Obama', 'Barrack', 'Barrack.Obama@email.com')
+INTO User2Data VALUES (3, 'Kennedy', 'John', 'John.Kennedy@email.com')
+SELECT * FROM DUAL;
+
+GRANT RBenBrandhorst to U1BenBrandhorst;
+GRANT SELECT, INSERT ON User1Data to U1BenBrandhorst;
+GRANT Session to U1BenBrandhorst;
+
+GRANT RBenBrandhorst to U2BenBrandhorst;
+GRANT SELECT ON User1Data to U2BenBrandhorst;
+GRANT SELECT ON User2Data to U2BenBrandhorst;

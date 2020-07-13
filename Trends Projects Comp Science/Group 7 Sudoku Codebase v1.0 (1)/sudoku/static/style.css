@@ -1,0 +1,121 @@
+/*
+Written by Ben Brandhorst for Sprint 1, last updated June 28, 2020
+*/
+/* Makes footers sticky
+*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+section > div {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+
+/* Here starts Play.html style block used to create the Sudoku board and the scratch pad used in the game
+*/
+#puzzle {
+border: 5px solid black;
+background-size: 200%;
+background-color: lightblue;
+}
+#scratch {
+background-size: 200%;
+border: 5px solid transparent;
+
+}
+.leftSide {
+flex-grow: 1;
+text-align: center;
+}
+.rightSide {
+flex-grow: 1;
+}
+.middle {
+text-align: center;
+flex-basis: auto;
+}
+.container {
+display: flex;
+}
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+
+
+/* Set a style for all buttons */
+button {
+  background-color: #444242;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 75%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.table_fields {
+    background: #fff;
+    border: 1px solid #dce1e9;
+    border-bottom: 0;
+    border-spacing: 0;
+    width: 100%
+}
+
+.table_fields .table_fields_top {background: #f1f3f6;}
+.table_fields .table_fields_top td{
+    font-size: 28px;
+
+}
+
+.table_fields td {
+    text-align: center;
+    border-bottom: 1px solid #dce1e9;
+    border-right: 1px solid #dce1e9;
+    font-size: 17px;
+    line-height: 18px;
+    color: #666;
+    white-space:nowrap;
+}
+
+.custompuzzle label {
+    word-wrap: break-word;
+}
+
+.custompuzzle textarea {
+    resize: none;
+    width: 80px;
+    line-break: anywhere;
+    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+
+

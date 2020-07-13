@@ -1,0 +1,156 @@
+/*1. Create a table named Faculty to store EMPLID, first name, last name, email, and year of birth,
+and Hire date. You should select the appropriate data types, sizes and constraints for the table.
+Hint: All tables need a Primary key.*/
+
+CREATE TABLE Faculty(
+EMPLID INT primary key,
+FirstName VARCHAR(20),
+LastName VARCHAR(20),
+Email VARCHAR(50),
+BirthYear YEAR,
+HireDate DATE 
+);
+
+
+/*2. Create a table named Courses to store CourseID, discipline name (e.g. SDEV), course number
+//(e.g. 300), number of credits (e.g. 3), date first offered (e.g. June 10, 2010) and course title. You
+should select the appropriate data types, sizes and constraints for the table.*/
+
+CREATE TABLE Courses(
+CourseID INT primary key,
+DiscName VARCHAR(6),
+CourseNum INT,
+NumCredits INT,
+FirstOffered DATE,
+CourseTitle VARCHAR(75)
+);
+
+/*3. Create a table named FacultyCourses to store the Faculty and the Courses they have taught. You
+//should design the table based on the Faculty and Courses tables you previously created. (Hint:
+Use Primary and Foreign key relationships).*/
+
+CREATE TABLE FacultyCourses(
+FacultyCourseID INT primary key,
+EMPLID INT,
+CourseID INT,
+Foreign Key (EMPLID) references Faculty(EMPLID),
+Foreign Key (CourseID) references Courses(CourseID)
+);
+
+/*4. Create Insert statements to populate at least 20 faculty records, 20 Course records, and 25
+FacultyCourses records.*/
+
+INSERT INTO Faculty(EMPLID, FirstName, LastName, Email, BirthYear, HireDate)
+VALUES('1','Tomeka','Hilder','t.hilder@gmail.com','1981','2018-01-01'),
+('2','Yuriko','Larrabee','y.larrabee@gmail.com','1990','2015-01-02'),
+('3','Jeanetta','Hyneman','j.hyneman@gmail.com','1959','2010-04-02'),
+('4','John','Smith','j.smith@gmail.com','1967','2001-04-10'),
+('5','Chris','Sheppard','c.sheppard@gmail.com','1985','2005-09-12'),
+('6','John','Jacobs','j.jacobs@gmail.com','1999','2019-06-01'),
+('7','Sarah','Conner','s.conner@gmail.com','1960','1994-02-01'),
+('8','Julia','Macgregor','j.macgregor@gmail.com','1998','2019-05-14'),
+('9','Zach','Brown','z.brown@gmail.com','1959','1999-11-04'),
+('10','Leo','Davinci','l.davinci@gmail.com','1990','2010-08-24'),
+('11','Uncle','Sam','u.sam@gmail.com','1975','2000-07-04'),
+('12','Tom','Hanks','t.hanks@gmail.com','1961','2013-08-13'),
+('13','Kim','Possible','k.possible@gmail.com','2000','2019-06-04'),
+('14','Dora','Explorer','d.explorer@gmail.com','1986','2013-12-07'),
+('15','Ben','Stiller','b.stiller@gmail.com','1976','1999-10-31'),
+('16','Matt','Damon','m.damon@gmail.com','1988','2005-02-28'),
+('17','Christian','Slater','c.slater@gmail.com','1989','2016-05-05'),
+('18','Julie','Hemmingway','j.hemmingway@gmail.com','1995','2008-11-23'),
+('19','Shaynia','Twain','s.twain@gmail.com','1976','1994-01-24'),
+('20','Adam','Apple','a.apple@gmail.com','1996','2013-05-25');
+
+INSERT INTO Courses(CourseID, DiscName, CourseNum, NumCredits, FirstOffered, CourseTitle)
+VALUES('1','CMIS','102','3','2015-06-01','Intro Problem Solving Alg Design'),
+('2','CMIS','141','3','2013-06-01','Introductory Programming'),
+('3','CMIS','242','3','2013-06-01','Intermediate Programming'),
+('4','CMIS','320','3','2014-06-01','Relational Database Concepts & Applications'),
+('5','HIST','156','3','2000-06-01','History of the United States to 1865'),
+('6','IFSM','201','3','2005-06-01','Concepts and Applications of Information Technology'),
+('7','LIBS','150','1','1999-06-01','Introduction to Research'),
+('8','NUTR','100','3','2003-06-01','Elements of Nutrition'),
+('9','WRTG','111','3','2000-06-01','Intro to Academic Writing I'),
+('10','WRTG','112','3','2001-06-01','Intro to Academic Writing II'),
+('11','HIST','125','3','2007-06-01','Technological Transformations'),
+('12','SDEV','300','3','2014-06-01','Building Secure Web Applications'),
+('13','BIOL','103','4','2007-06-01','Introduction to Biology'),
+('14','SDEV','325','3','2016-06-01','Detecting Software Vulnerabilities'),
+('15','GVPT','170','3','2004-06-01','American Government'),
+('16','SDEV','250','3','2016-06-01','Database Security'),
+('17','SDEV','360','3','2001-06-01','Secure Software Engineering'),
+('18','WRTG','391','3','2016-06-01','Advanced Research Writing'),
+('19','SDEV','400','3','2002-06-01','Secure Programming in the Cloud'),
+('20','SDEV','460','3','2018-06-01','Software Security Testing');
+
+INSERT INTO FacultyCourses(FacultyCourseID,EMPLID,CourseID)
+VALUES('1','20','1'),
+('2','19','5'),
+('3','18','6'),
+('4','17','7'),
+('5','16','8'),
+('6','15','9'),
+('7','14','10'),
+('8','13','11'),
+('9','12','12'),
+('10','11','13'),
+('11','10','14'),
+('12','9','15'),
+('13','8','16'),
+('14','7','17'),
+('15','6','18'),
+('16','5','19'),
+('17','4','20'),
+('18','3','8'),
+('19','2','7'),
+('20','1','6'),
+('21','10','5'),
+('22','11','4'),
+('23','12','1'),
+('24','13','2'),
+('25','14','3');
+
+/*5. Create an update statement to update all Courses to 6 credits.*/
+
+UPDATE Courses SET NumCredits='6';
+
+/*6. Create an update statement to update any Faculty with a year of birth of 1994 to change it to
+1993.*/
+
+UPDATE Faculty SET BirthYear='1993' WHERE BirthYear='1994';
+
+/*7. Write an appropriate SQL statement to delete any Faculty record whose Last name starts with
+the letter ‘R’ or the letter ‘S’. (Hint: this should only be one SQL statement not two.)*/
+
+DELETE FROM Faculty WHERE LastName LIKE 'r%' OR LastName LIKE 's%';
+
+/*8. Write an appropriate SQL statement to delete any Course record that was first offered in 2004.*/
+
+DELETE FROM Courses WHERE FirstOffered >= '2004-01-01' AND FirstOffered < '2005-01-01';
+
+/*9. Use appropriate select statements to display all records in all 3 tables. The Faculty query should
+display the Faculty by last name in descending order and Course query should display the
+courses in ascending order by course title. The display order of the FacultyCourses table is not
+specified. Hint: you should create three separate select statements to satisfy this requirement.*/
+
+SELECT * FROM Faculty ORDER BY LastName DESC;
+
+SELECT * FROM Courses ORDER BY CourseTitle;
+
+SELECT * FROM FacultyCourses;
+
+/*10. Create a select statement to display all Faculty who have not taught at least 3 courses.*/
+
+SELECT FacultyCourses.EMPLID, Faculty.FirstName, Faculty.LastName FROM FacultyCourses INNER JOIN Faculty ON FacultyCourses.EMPLID = Faculty.EMPLID GROUP BY EMPLID Having COUNT(FacultyCourses.EMPLID) < 3;
+
+/*11.Create a select statement to display all Courses offered before 1999.*/
+
+SELECT CourseID, DiscName, CourseNum, NumCredits, FirstOffered, CourseTitle FROM Courses WHERE FirstOffered < "1999-01-01";
+
+/*12. Use select and appropriate joins to display all columns from the Faculty and Course tables for
+each Faculty and Course in the FacultyCourse table. Note: this will be a 3-table join.*/
+
+SELECT * From Faculty INNER JOIN FacultyCourses  on Faculty.EMPLID = FacultyCourses.EMPLID INNER JOIN Courses ON FacultyCourses.CourseID = Courses.CourseID;
+
+

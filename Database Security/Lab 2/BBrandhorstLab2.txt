@@ -1,0 +1,151 @@
+--Ben Brandhorst
+--11/1/19
+--SDEV 350 7980
+--Professor Ivan De Los Santos
+
+Error starting at line : 3 in command -
+Drop TABLE ClassEnrollments
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 4 in command -
+DROP TABLE Engineers
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 5 in command -
+DROP TABLE Faculty
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 6 in command -
+DROP TABLE Classes
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Table ENGINEERS created.
+
+
+Table FACULTY created.
+
+
+Table CLASSES created.
+
+
+Table CLASSENROLLMENTS created.
+
+
+36 rows inserted.
+
+
+       EID LASTNAME                                           FIRSTNAME                                          EMAIL                                                                                                                                                                                                                                                          GRADDATE 
+---------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------
+        15 Carlson                                            Tom                                                tom.carlson@email.com                                                                                                                                                                                                                                          01-JUN-20
+        14 Datiz                                              Keith                                              keith.datiz@emai.com                                                                                                                                                                                                                                           01-JUN-20
+        13 Hines                                              Cadedra                                            cadedra.hines@email.com                                                                                                                                                                                                                                        01-JUN-20
+        12 Marks                                              Marky                                              marky.marks@email.com                                                                                                                                                                                                                                          01-JUN-20
+        11 Shrenk                                             Kathy                                              kathy.shrenk@email.com                                                                                                                                                                                                                                         01-JUN-20
+        10 Castillo                                           Juan                                               juan.castillo@email.com                                                                                                                                                                                                                                        01-JUN-20
+         9 Taylor                                             Double                                             double.taylor@email.com                                                                                                                                                                                                                                        01-JUN-20
+         8 Smith                                              Kevin                                              kevin.smith@email.com                                                                                                                                                                                                                                          01-JUN-20
+         7 Doe                                                Jane                                               jane.doe@email.com                                                                                                                                                                                                                                             01-JUN-20
+         6 Lopez                                              George                                             george.lopez@email.com                                                                                                                                                                                                                                         01-JUN-20
+         5 Stanley                                            Kim                                                kim.stanley@email.com                                                                                                                                                                                                                                          01-JUN-20
+
+       EID LASTNAME                                           FIRSTNAME                                          EMAIL                                                                                                                                                                                                                                                          GRADDATE 
+---------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------
+         4 Paulson                                            Robert                                             robert.paulson@email.com                                                                                                                                                                                                                                       01-DEC-20
+         3 Lee                                                Bruce                                              bruce.lee@email.com                                                                                                                                                                                                                                            01-JUN-20
+         2 Jones                                              Jim                                                jim.jones@email.com                                                                                                                                                                                                                                            01-JUN-21
+         1 Brandhorst                                         Ben                                                ben.brandhorst@email.com                                                                                                                                                                                                                                       01-JUN-19
+
+15 rows selected. 
+
+
+       FID LASTNAME                                           FIRSTNAME                                          EMAIL                                                                                                                                                                                                                                                          HIREDATE 
+---------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------
+         3 Iver                                               Bon                                                bon.iver@faculty.com                                                                                                                                                                                                                                           22-OCT-01
+         2 Johnson                                            Magic                                              magic.johnson@faculty.com                                                                                                                                                                                                                                      13-MAR-82
+         1 Henderson                                          Oswald                                             oswald.henderson@faculty.com                                                                                                                                                                                                                                   01-JAN-90
+
+
+       CID SUBJECT                                            CATALOGNBR TITLE                                             
+---------- -------------------------------------------------- ---------- --------------------------------------------------
+         3 CMIS                                                      242 Intermediate Programming                          
+         2 BIOL                                                      103 Into to Biology                                   
+         1 SDEV                                                      350 Database Security                                 
+
+
+      ENID        CID        FID        EID
+---------- ---------- ---------- ----------
+        15          3          3          1
+        14          3          3          2
+        13          3          3          3
+        12          3          3          4
+        11          3          3          5
+        10          2          2          6
+         9          2          2          7
+         8          2          2          8
+         7          2          2          9
+         6          2          2         10
+         5          1          1         11
+
+      ENID        CID        FID        EID
+---------- ---------- ---------- ----------
+         4          1          1         12
+         3          1          1         13
+         2          1          1         14
+         1          1          1         15
+
+15 rows selected. 
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+1 row deleted.
+
+
+View LAB2VIEW created.
+
+
+ENGINEERLNAME                                      FIRSTNAME                                          FACULTYLNAME                                       EMAIL                                                                                                                                                                                                                                                          SUBJECT                                            TITLE                                             
+-------------------------------------------------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+Datiz                                              Keith                                              Friendship                                         oswald.henderson@faculty.com                                                                                                                                                                                                                                   SDEV                                               Database Security                                 
+Hines                                              Amadeus                                            Friendship                                         oswald.henderson@faculty.com                                                                                                                                                                                                                                   SDEV                                               Database Security                                 
+Marks                                              Marky                                              Friendship                                         oswald.henderson@faculty.com                                                                                                                                                                                                                                   SDEV                                               Database Security                                 
+Shrenk                                             Kathy                                              Friendship                                         oswald.henderson@faculty.com                                                                                                                                                                                                                                   SDEV                                               Database Security                                 
+Castillo                                           Juan                                               Johnson                                            magic.johnson@faculty.com                                                                                                                                                                                                                                      IOT Cyber                                          Into to Biology                                   
+Taylor                                             Double                                             Johnson                                            magic.johnson@faculty.com                                                                                                                                                                                                                                      IOT Cyber                                          Into to Biology                                   
+Smith                                              Kevin                                              Johnson                                            magic.johnson@faculty.com                                                                                                                                                                                                                                      IOT Cyber                                          Into to Biology                                   
+Doe                                                Jane                                               Johnson                                            magic.johnson@faculty.com                                                                                                                                                                                                                                      IOT Cyber                                          Into to Biology                                   
+Lopez                                              George                                             Johnson                                            magic.johnson@faculty.com                                                                                                                                                                                                                                      IOT Cyber                                          Into to Biology                                   
+Stanley                                            Kim                                                Iver                                               bon.iver@faculty.com                                                                                                                                                                                                                                           CMIS                                               Intermediate Programming                          
+Paulson                                            Robert                                             Iver                                               bon.iver@faculty.com                                                                                                                                                                                                                                           CMIS                                               Intermediate Programming                          
+
+ENGINEERLNAME                                      FIRSTNAME                                          FACULTYLNAME                                       EMAIL                                                                                                                                                                                                                                                          SUBJECT                                            TITLE                                             
+-------------------------------------------------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+Lee                                                Bruce                                              Iver                                               bon.iver@faculty.com                                                                                                                                                                                                                                           CMIS                                               Intermediate Programming                          
+Jones                                              Jim                                                Iver                                               bon.iver@faculty.com                                                                                                                                                                                                                                           CMIS                                               Intermediate Programming                          
+Brandhorst                                         Ben                                                Iver                                               bon.iver@faculty.com                                                                                                                                                                                                                                           CMIS                                               Intermediate Programming                          
+
+14 rows selected. 
+

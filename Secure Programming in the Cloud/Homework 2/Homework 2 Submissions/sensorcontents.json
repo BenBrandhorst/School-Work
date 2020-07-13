@@ -1,0 +1,210 @@
+{
+    "Sensors": [{
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Auto" },
+                    "SensorDescription": { "S": "An automobile sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Car.png" },
+                    "SampleRate": { "N": "2048" },
+                    "Locations": { "SS": ["Engine", "Transmission", "Exhaust"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "AirCondition" },
+                    "SensorDescription": { "S": "An air conditioning sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/AirCondition.png" },
+                    "Locations": { "SS": ["Living Room", "Master Bedroom", "Dining Room"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Frameworks" },
+                    "SensorDescription": { "S": "A database frameworks sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Frameworks.png" },
+                    "SampleRate": { "N": "1024" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Lighting" },
+                    "ImageFile": { "S": "/Homework 2/Images/Lighting.png" },
+                    "SampleRate": { "N": "2048" },
+                    "Locations": { "SS": ["Entry", "Computer Room", "Dining Room"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Mixer" },
+                    "SensorDescription": { "S": "A kitchen mixer sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Mixer.png" },
+                    "SampleRate": { "N": "512" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "NAS" },
+                    "ImageFile": { "S": "/Homework 2/Images/NAS.png" },
+                    "SampleRate": { "N": "2048" },
+                    "Locations": { "SS": ["Server 1", "Server 2", "Server 3"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Fan" },
+                    "SensorDescription": { "S": "An exhaust fan sensor" },
+                    "SampleRate": { "N": "2048" },
+                    "Locations": { "SS": ["Bathroom 1", "Bathroom 2", "Bathroom 3"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Protocols" },
+                    "SensorDescription": { "S": "An protocols sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Protocols.png" },
+                    "SampleRate": { "N": "1024" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Refrigerator" },
+                    "SensorDescription": { "S": "A refrigirator sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Refrigerator.png" },
+                    "Locations": { "SS": ["Kitchen", "Garage", "Back Porch"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Shopping" },
+                    "SensorDescription": { "S": "A shopping sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Shopping.png" },
+                    "Locations": { "SS": ["Albertsons", "Stater Bros", "Whole Foods"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "SmartHome" },
+                    "SensorDescription": { "S": "A smart home sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/SmartHome.png" },
+                    "SampleRate": { "N": "4096" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Surveillance" },
+                    "SensorDescription": { "S": "A surveillance sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Surveillance.png" },
+                    "Locations": { "SS": ["Front Yard", "Back Yard", "Driveway"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Television" },
+                    "SensorDescription": { "S": "A television sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Television.png" },
+                    "SampleRate": { "N": "512" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Temperature" },
+                    "SensorDescription": { "S": "A temperature sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Temperature.png" },
+                    "Locations": { "SS": ["Palm Springs, CA", "Mesa, AZ", "San Diego, CA"] }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "VirtualReality" },
+                    "SensorDescription": { "S": "A virtual reality sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/VirtualReality.png" },
+                    "SampleRate": { "N": "4096" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Water" },
+                    "SensorDescription": { "S": "A water sensor" },
+                    "ImageFile": { "S": "/Homework 2/Images/Water.png" },
+                    "SampleRate": { "N": "1024" },
+                    "Locations": { "SS": ["Sink", "Shower", "Sprinklers"] },
+                    "Shape": { "S": "Cylindrical" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Pressure" },
+                    "SensorDescription": { "S": "A barometric pressure  sensor" },
+                    "SampleRate": { "N": "2048" },
+                    "Locations": { "SS": ["Joshua Tree", "Yosemite", "Yellowstone"] },
+                    "Effectiveness": { "S": "Effective" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Speed" },
+                    "SensorDescription": { "S": "An speed sensor" },
+                    "SampleRate": { "N": "4096" },
+                    "Locations": { "SS": ["Car", "Truck", "Train"] },
+                    "Age": { "N": "2" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Sunlight" },
+                    "SensorDescription": { "S": "A sunlight sensor" },
+                    "SampleRate": { "N": "256" },
+                    "Locations": { "SS": ["Front Yard", "Back Yard", "Woods"] },
+                    "Size": { "N": "5" }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Sensor": { "S": "Motion" },
+                    "SensorDescription": { "S": "A motion sensor" },
+                    "SampleRate": { "N": "1024" },
+                    "Locations": { "SS": ["Game Trail 1", "Game Trail 2", "Game Trail 3"] },
+                    "Color": { "S": "Black" }
+                }
+            }
+        }
+    ]
+}

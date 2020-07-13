@@ -1,0 +1,53 @@
+
+
+<!--
+   Date: Jun 15, 2019
+   Author: Ben Brandhorst
+   Title: LogIn.html
+   Description: SDEV300 Lab 4
+   -->
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<head>
+   <title>Desert Coffee Roasters </title>
+</head>
+<style> 
+   input[type=submit] {
+   background-color: #000000;
+   border: none;
+   color: white;
+   padding: 16px 32px;
+   text-decoration: none;
+   margin: 4px 2px;
+   cursor: pointer;
+   width: 300px;
+   height: 40px;
+   }
+</style>
+<h1>Desert Coffee Roasters</h1>
+<img src="http://localhost/img/desert.jpg">
+<table class="login table">
+   <body class="center">
+      <tr>
+         <h3> Please sign in to continue </h3>
+      </tr>
+      <form name="main" method="post" action="MainPage.php">
+         <tr>
+            <td>Username:</td>
+            <td><input name="username" type="text" size="50"></td>
+         </tr>
+         <tr>
+            <td>Email Address:</td>
+            <td><input name="email" type="text" size="50"></td>
+         </tr>
+         <tr>
+            <td>Password:</td>
+            <td><input name="pass" type="password" size="50"></td>
+         </tr>
+         <tr>
+            <td colspan="2" align="center"><input name="submit" type="submit" value="Submit"></td>
+</table>
+</form>
+</body>
+</html>
+

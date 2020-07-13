@@ -1,0 +1,395 @@
+mysql> CREATE TABLE Faculty(
+    -> EMPLID INT primary key,
+    -> FirstName VARCHAR(20),
+    -> LastName VARCHAR(20),
+    -> Email VARCHAR(50),
+    -> BirthYear YEAR,
+    -> HireDate DATE 
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_sdev300 |
++-------------------+
+| faculty           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE Courses(
+    -> CourseID INT primary key,
+    -> DiscName VARCHAR(6),
+    -> CourseNum INT,
+    -> NumCredits INT,
+    -> FirstOffered DATE,
+    -> CourseTitle VARCHAR(75)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_sdev300 |
++-------------------+
+| courses           |
+| faculty           |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE FacultyCourses(
+    -> FacultyCourseID INT primary key,
+    -> EMPLID INT,
+    -> CourseID INT,
+    -> Foreign Key (EMPLID) references Faculty(EMPLID),
+    -> Foreign Key (CourseID) references Courses(CourseID)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_sdev300 |
++-------------------+
+| courses           |
+| faculty           |
+| facultycourses    |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO Faculty(EMPLID, FirstName, LastName, Email, BirthYear, HireDate)
+    -> VALUES('1','Tomeka','Hilder','t.hilder@gmail.com','1981','2018-01-01'),
+    -> ('2','Yuriko','Larrabee','y.larrabee@gmail.com','1990','2015-01-02'),
+    -> ('3','Jeanetta','Hyneman','j.hyneman@gmail.com','1959','2010-04-02'),
+    -> ('4','John','Smith','j.smith@gmail.com','1967','2001-04-10'),
+    -> ('5','Chris','Sheppard','c.sheppard@gmail.com','1985','2005-09-12'),
+    -> ('6','John','Jacobs','j.jacobs@gmail.com','1999','2019-06-01'),
+    -> ('7','Sarah','Conner','s.conner@gmail.com','1960','1994-02-01'),
+    -> ('8','Julia','Macgregor','j.macgregor@gmail.com','1998','2019-05-14'),
+    -> ('9','Zach','Brown','z.brown@gmail.com','1959','1999-11-04'),
+    -> ('10','Leo','Davinci','l.davinci@gmail.com','1990','2010-08-24'),
+    -> ('11','Uncle','Sam','u.sam@gmail.com','1975','2000-07-04'),
+    -> ('12','Tom','Hanks','t.hanks@gmail.com','1961','2013-08-13'),
+    -> ('13','Kim','Possible','k.possible@gmail.com','2000','2019-06-04'),
+    -> ('14','Dora','Explorer','d.explorer@gmail.com','1986','2013-12-07'),
+    -> ('15','Ben','Stiller','b.stiller@gmail.com','1976','1999-10-31'),
+    -> ('16','Matt','Damon','m.damon@gmail.com','1988','2005-02-28'),
+    -> ('17','Christian','Slater','c.slater@gmail.com','1989','2016-05-05'),
+    -> ('18','Julie','Hemmingway','j.hemmingway@gmail.com','1995','2008-11-23'),
+    -> ('19','Shaynia','Twain','s.twain@gmail.com','1976','1994-01-24'),
+    -> ('20','Adam','Apple','a.apple@gmail.com','1996','2013-05-25');
+Query OK, 20 rows affected (0.03 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Courses(CourseID, DiscName, CourseNum, NumCredits, FirstOffered, CourseTitle)
+    -> VALUES('1','CMIS','102','3','2015-06-01','Intro Problem Solving Alg Design'),
+    -> ('2','CMIS','141','3','2013-06-01','Introductory Programming'),
+    -> ('3','CMIS','242','3','2013-06-01','Intermediate Programming'),
+    -> ('4','CMIS','320','3','2014-06-01','Relational Database Concepts & Applications'),
+    -> ('5','HIST','156','3','2000-06-01','History of the United States to 1865'),
+    -> ('6','IFSM','201','3','2005-06-01','Concepts and Applications of Information Technology'),
+    -> ('7','LIBS','150','1','1999-06-01','Introduction to Research'),
+    -> ('8','NUTR','100','3','2003-06-01','Elements of Nutrition'),
+    -> ('9','WRTG','111','3','2000-06-01','Intro to Academic Writing I'),
+    -> ('10','WRTG','112','3','2001-06-01','Intro to Academic Writing II'),
+    -> ('11','HIST','125','3','2007-06-01','Technological Transformations'),
+    -> ('12','SDEV','300','3','2014-06-01','Building Secure Web Applications'),
+    -> ('13','BIOL','103','4','2007-06-01','Introduction to Biology'),
+    -> ('14','SDEV','325','3','2016-06-01','Detecting Software Vulnerabilities'),
+    -> ('15','GVPT','170','3','2004-06-01','American Government'),
+    -> ('16','SDEV','250','3','2016-06-01','Database Security'),
+    -> ('17','SDEV','360','3','2001-06-01','Secure Software Engineering'),
+    -> ('18','WRTG','391','3','2016-06-01','Advanced Research Writing'),
+    -> ('19','SDEV','400','3','2002-06-01','Secure Programming in the Cloud'),
+    -> ('20','SDEV','460','3','2018-06-01','Software Security Testing');
+Query OK, 20 rows affected (0.00 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO FacultyCourses(FacultyCourseID,EMPLID,CourseID)
+    -> VALUES('1','20','1'),
+    -> ('2','19','5'),
+    -> ('3','18','6'),
+    -> ('4','17','7'),
+    -> ('5','16','8'),
+    -> ('6','15','9'),
+    -> ('7','14','10'),
+    -> ('8','13','11'),
+    -> ('9','12','12'),
+    -> ('10','11','13'),
+    -> ('11','10','14'),
+    -> ('12','9','15'),
+    -> ('13','8','16'),
+    -> ('14','7','17'),
+    -> ('15','6','18'),
+    -> ('16','5','19'),
+    -> ('17','4','20'),
+    -> ('18','3','8'),
+    -> ('19','2','7'),
+    -> ('20','1','6'),
+    -> ('21','10','5'),
+    -> ('22','11','4'),
+    -> ('23','12','1'),
+    -> ('24','13','2'),
+    -> ('25','14','3');
+Query OK, 25 rows affected (0.00 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE Courses SET NumCredits='6';
+Query OK, 20 rows affected (0.00 sec)
+Rows matched: 20  Changed: 20  Warnings: 0
+
+mysql> UPDATE Faculty SET BirthYear='1993' WHERE BirthYear='1994';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> DELETE FROM Faculty WHERE LastName LIKE '[rs]%';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM Faculty WHERE LastName LIKE '[r-s]%';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM Faculty
+    -> ;
++--------+-----------+------------+------------------------+-----------+------------+
+| EMPLID | FirstName | LastName   | Email                  | BirthYear | HireDate   |
++--------+-----------+------------+------------------------+-----------+------------+
+|      1 | Tomeka    | Hilder     | t.hilder@gmail.com     |      1981 | 2018-01-01 |
+|      2 | Yuriko    | Larrabee   | y.larrabee@gmail.com   |      1990 | 2015-01-02 |
+|      3 | Jeanetta  | Hyneman    | j.hyneman@gmail.com    |      1959 | 2010-04-02 |
+|      4 | John      | Smith      | j.smith@gmail.com      |      1967 | 2001-04-10 |
+|      5 | Chris     | Sheppard   | c.sheppard@gmail.com   |      1985 | 2005-09-12 |
+|      6 | John      | Jacobs     | j.jacobs@gmail.com     |      1999 | 2019-06-01 |
+|      7 | Sarah     | Conner     | s.conner@gmail.com     |      1960 | 1994-02-01 |
+|      8 | Julia     | Macgregor  | j.macgregor@gmail.com  |      1998 | 2019-05-14 |
+|      9 | Zach      | Brown      | z.brown@gmail.com      |      1959 | 1999-11-04 |
+|     10 | Leo       | Davinci    | l.davinci@gmail.com    |      1990 | 2010-08-24 |
+|     11 | Uncle     | Sam        | u.sam@gmail.com        |      1975 | 2000-07-04 |
+|     12 | Tom       | Hanks      | t.hanks@gmail.com      |      1961 | 2013-08-13 |
+|     13 | Kim       | Possible   | k.possible@gmail.com   |      2000 | 2019-06-04 |
+|     14 | Dora      | Explorer   | d.explorer@gmail.com   |      1986 | 2013-12-07 |
+|     15 | Ben       | Stiller    | b.stiller@gmail.com    |      1976 | 1999-10-31 |
+|     16 | Matt      | Damon      | m.damon@gmail.com      |      1988 | 2005-02-28 |
+|     17 | Christian | Slater     | c.slater@gmail.com     |      1989 | 2016-05-05 |
+|     18 | Julie     | Hemmingway | j.hemmingway@gmail.com |      1995 | 2008-11-23 |
+|     19 | Shaynia   | Twain      | s.twain@gmail.com      |      1976 | 1994-01-24 |
+|     20 | Adam      | Apple      | a.apple@gmail.com      |      1996 | 2013-05-25 |
++--------+-----------+------------+------------------------+-----------+------------+
+20 rows in set (0.00 sec)
+
+mysql> DELETE FROM Faculty WHERE LastName LIKE '[R-S]%';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM Faculty
+    -> ;
++--------+-----------+------------+------------------------+-----------+------------+
+| EMPLID | FirstName | LastName   | Email                  | BirthYear | HireDate   |
++--------+-----------+------------+------------------------+-----------+------------+
+|      1 | Tomeka    | Hilder     | t.hilder@gmail.com     |      1981 | 2018-01-01 |
+|      2 | Yuriko    | Larrabee   | y.larrabee@gmail.com   |      1990 | 2015-01-02 |
+|      3 | Jeanetta  | Hyneman    | j.hyneman@gmail.com    |      1959 | 2010-04-02 |
+|      4 | John      | Smith      | j.smith@gmail.com      |      1967 | 2001-04-10 |
+|      5 | Chris     | Sheppard   | c.sheppard@gmail.com   |      1985 | 2005-09-12 |
+|      6 | John      | Jacobs     | j.jacobs@gmail.com     |      1999 | 2019-06-01 |
+|      7 | Sarah     | Conner     | s.conner@gmail.com     |      1960 | 1994-02-01 |
+|      8 | Julia     | Macgregor  | j.macgregor@gmail.com  |      1998 | 2019-05-14 |
+|      9 | Zach      | Brown      | z.brown@gmail.com      |      1959 | 1999-11-04 |
+|     10 | Leo       | Davinci    | l.davinci@gmail.com    |      1990 | 2010-08-24 |
+|     11 | Uncle     | Sam        | u.sam@gmail.com        |      1975 | 2000-07-04 |
+|     12 | Tom       | Hanks      | t.hanks@gmail.com      |      1961 | 2013-08-13 |
+|     13 | Kim       | Possible   | k.possible@gmail.com   |      2000 | 2019-06-04 |
+|     14 | Dora      | Explorer   | d.explorer@gmail.com   |      1986 | 2013-12-07 |
+|     15 | Ben       | Stiller    | b.stiller@gmail.com    |      1976 | 1999-10-31 |
+|     16 | Matt      | Damon      | m.damon@gmail.com      |      1988 | 2005-02-28 |
+|     17 | Christian | Slater     | c.slater@gmail.com     |      1989 | 2016-05-05 |
+|     18 | Julie     | Hemmingway | j.hemmingway@gmail.com |      1995 | 2008-11-23 |
+|     19 | Shaynia   | Twain      | s.twain@gmail.com      |      1976 | 1994-01-24 |
+|     20 | Adam      | Apple      | a.apple@gmail.com      |      1996 | 2013-05-25 |
++--------+-----------+------------+------------------------+-----------+------------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Faculty WHERE LastName LIKE '[R-S]%';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Faculty WHERE LastName LIKE 'R%';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Faculty WHERE LastName LIKE 'S%';
++--------+-----------+----------+----------------------+-----------+------------+
+| EMPLID | FirstName | LastName | Email                | BirthYear | HireDate   |
++--------+-----------+----------+----------------------+-----------+------------+
+|      4 | John      | Smith    | j.smith@gmail.com    |      1967 | 2001-04-10 |
+|      5 | Chris     | Sheppard | c.sheppard@gmail.com |      1985 | 2005-09-12 |
+|     11 | Uncle     | Sam      | u.sam@gmail.com      |      1975 | 2000-07-04 |
+|     15 | Ben       | Stiller  | b.stiller@gmail.com  |      1976 | 1999-10-31 |
+|     17 | Christian | Slater   | c.slater@gmail.com   |      1989 | 2016-05-05 |
++--------+-----------+----------+----------------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Faculty WHERE LastName LIKE '[R-S]%';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Faculty WHERE LastName LIKE '[RS]%';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Faculty WHERE LastName LIKE 'R%' OR LastName LIKE 'S%' ;
++--------+-----------+----------+----------------------+-----------+------------+
+| EMPLID | FirstName | LastName | Email                | BirthYear | HireDate   |
++--------+-----------+----------+----------------------+-----------+------------+
+|      4 | John      | Smith    | j.smith@gmail.com    |      1967 | 2001-04-10 |
+|      5 | Chris     | Sheppard | c.sheppard@gmail.com |      1985 | 2005-09-12 |
+|     11 | Uncle     | Sam      | u.sam@gmail.com      |      1975 | 2000-07-04 |
+|     15 | Ben       | Stiller  | b.stiller@gmail.com  |      1976 | 1999-10-31 |
+|     17 | Christian | Slater   | c.slater@gmail.com   |      1989 | 2016-05-05 |
++--------+-----------+----------+----------------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM Faculty WHERE LastName LIKE 'r%' OR LastName LIKE 's%';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`sdev300`.`facultycourses`, CONSTRAINT `facultycourses_ibfk_1` FOREIGN KEY (`EMPLID`) REFERENCES `faculty` (`EMPLID`))
+mysql> DELETE FROM Courses WHERE FirstOffered >= '2004-01-01' AND FirstOffered < '2005-01-01';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`sdev300`.`facultycourses`, CONSTRAINT `facultycourses_ibfk_2` FOREIGN KEY (`CourseID`) REFERENCES `courses` (`CourseID`))
+mysql> SELECT * FROM Faculty ORDER BY LastName DESC;
++--------+-----------+------------+------------------------+-----------+------------+
+| EMPLID | FirstName | LastName   | Email                  | BirthYear | HireDate   |
++--------+-----------+------------+------------------------+-----------+------------+
+|     19 | Shaynia   | Twain      | s.twain@gmail.com      |      1976 | 1994-01-24 |
+|     15 | Ben       | Stiller    | b.stiller@gmail.com    |      1976 | 1999-10-31 |
+|      4 | John      | Smith      | j.smith@gmail.com      |      1967 | 2001-04-10 |
+|     17 | Christian | Slater     | c.slater@gmail.com     |      1989 | 2016-05-05 |
+|      5 | Chris     | Sheppard   | c.sheppard@gmail.com   |      1985 | 2005-09-12 |
+|     11 | Uncle     | Sam        | u.sam@gmail.com        |      1975 | 2000-07-04 |
+|     13 | Kim       | Possible   | k.possible@gmail.com   |      2000 | 2019-06-04 |
+|      8 | Julia     | Macgregor  | j.macgregor@gmail.com  |      1998 | 2019-05-14 |
+|      2 | Yuriko    | Larrabee   | y.larrabee@gmail.com   |      1990 | 2015-01-02 |
+|      6 | John      | Jacobs     | j.jacobs@gmail.com     |      1999 | 2019-06-01 |
+|      3 | Jeanetta  | Hyneman    | j.hyneman@gmail.com    |      1959 | 2010-04-02 |
+|      1 | Tomeka    | Hilder     | t.hilder@gmail.com     |      1981 | 2018-01-01 |
+|     18 | Julie     | Hemmingway | j.hemmingway@gmail.com |      1995 | 2008-11-23 |
+|     12 | Tom       | Hanks      | t.hanks@gmail.com      |      1961 | 2013-08-13 |
+|     14 | Dora      | Explorer   | d.explorer@gmail.com   |      1986 | 2013-12-07 |
+|     10 | Leo       | Davinci    | l.davinci@gmail.com    |      1990 | 2010-08-24 |
+|     16 | Matt      | Damon      | m.damon@gmail.com      |      1988 | 2005-02-28 |
+|      7 | Sarah     | Conner     | s.conner@gmail.com     |      1960 | 1994-02-01 |
+|      9 | Zach      | Brown      | z.brown@gmail.com      |      1959 | 1999-11-04 |
+|     20 | Adam      | Apple      | a.apple@gmail.com      |      1996 | 2013-05-25 |
++--------+-----------+------------+------------------------+-----------+------------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Courses ORDER BY CourseTitle;
++----------+----------+-----------+------------+--------------+-----------------------------------------------------+
+| CourseID | DiscName | CourseNum | NumCredits | FirstOffered | CourseTitle                                         |
++----------+----------+-----------+------------+--------------+-----------------------------------------------------+
+|       18 | WRTG     |       391 |          6 | 2016-06-01   | Advanced Research Writing                           |
+|       15 | GVPT     |       170 |          6 | 2004-06-01   | American Government                                 |
+|       12 | SDEV     |       300 |          6 | 2014-06-01   | Building Secure Web Applications                    |
+|        6 | IFSM     |       201 |          6 | 2005-06-01   | Concepts and Applications of Information Technology |
+|       16 | SDEV     |       250 |          6 | 2016-06-01   | Database Security                                   |
+|       14 | SDEV     |       325 |          6 | 2016-06-01   | Detecting Software Vulnerabilities                  |
+|        8 | NUTR     |       100 |          6 | 2003-06-01   | Elements of Nutrition                               |
+|        5 | HIST     |       156 |          6 | 2000-06-01   | History of the United States to 1865                |
+|        3 | CMIS     |       242 |          6 | 2013-06-01   | Intermediate Programming                            |
+|        1 | CMIS     |       102 |          6 | 2015-06-01   | Intro Problem Solving Alg Design                    |
+|        9 | WRTG     |       111 |          6 | 2000-06-01   | Intro to Academic Writing I                         |
+|       10 | WRTG     |       112 |          6 | 2001-06-01   | Intro to Academic Writing II                        |
+|       13 | BIOL     |       103 |          6 | 2007-06-01   | Introduction to Biology                             |
+|        7 | LIBS     |       150 |          6 | 1999-06-01   | Introduction to Research                            |
+|        2 | CMIS     |       141 |          6 | 2013-06-01   | Introductory Programming                            |
+|        4 | CMIS     |       320 |          6 | 2014-06-01   | Relational Database Concepts & Applications         |
+|       19 | SDEV     |       400 |          6 | 2002-06-01   | Secure Programming in the Cloud                     |
+|       17 | SDEV     |       360 |          6 | 2001-06-01   | Secure Software Engineering                         |
+|       20 | SDEV     |       460 |          6 | 2018-06-01   | Software Security Testing                           |
+|       11 | HIST     |       125 |          6 | 2007-06-01   | Technological Transformations                       |
++----------+----------+-----------+------------+--------------+-----------------------------------------------------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT * FROM FacultyCourses;
++-----------------+--------+----------+
+| FacultyCourseID | EMPLID | CourseID |
++-----------------+--------+----------+
+|               1 |     20 |        1 |
+|               2 |     19 |        5 |
+|               3 |     18 |        6 |
+|               4 |     17 |        7 |
+|               5 |     16 |        8 |
+|               6 |     15 |        9 |
+|               7 |     14 |       10 |
+|               8 |     13 |       11 |
+|               9 |     12 |       12 |
+|              10 |     11 |       13 |
+|              11 |     10 |       14 |
+|              12 |      9 |       15 |
+|              13 |      8 |       16 |
+|              14 |      7 |       17 |
+|              15 |      6 |       18 |
+|              16 |      5 |       19 |
+|              17 |      4 |       20 |
+|              18 |      3 |        8 |
+|              19 |      2 |        7 |
+|              20 |      1 |        6 |
+|              21 |     10 |        5 |
+|              22 |     11 |        4 |
+|              23 |     12 |        1 |
+|              24 |     13 |        2 |
+|              25 |     14 |        3 |
++-----------------+--------+----------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT FacultyCourses.EMPLID, Faculty.FirstName, Faculty.LastName FROM FacultyCourses INNER JOIN Faculty ON FacultyCourses.EMPLID = Faculty.EMPLID GROUP BY EMPLID Having COUNT(FacultyCourses.EMPLID) < 3;
++--------+-----------+------------+
+| EMPLID | FirstName | LastName   |
++--------+-----------+------------+
+|      1 | Tomeka    | Hilder     |
+|      2 | Yuriko    | Larrabee   |
+|      3 | Jeanetta  | Hyneman    |
+|      4 | John      | Smith      |
+|      5 | Chris     | Sheppard   |
+|      6 | John      | Jacobs     |
+|      7 | Sarah     | Conner     |
+|      8 | Julia     | Macgregor  |
+|      9 | Zach      | Brown      |
+|     10 | Leo       | Davinci    |
+|     11 | Uncle     | Sam        |
+|     12 | Tom       | Hanks      |
+|     13 | Kim       | Possible   |
+|     14 | Dora      | Explorer   |
+|     15 | Ben       | Stiller    |
+|     16 | Matt      | Damon      |
+|     17 | Christian | Slater     |
+|     18 | Julie     | Hemmingway |
+|     19 | Shaynia   | Twain      |
+|     20 | Adam      | Apple      |
++--------+-----------+------------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT CourseID, DiscName, CourseNum, NumCredits, FirstOffered, CourseTitle FROM Courses WHERE FirstOffered < "1999-01-01";
+Empty set (0.00 sec)
+
+mysql> SELECT * From Faculty INNER JOIN FacultyCourses  on Faculty.EMPLID = FacultyCourses.EMPLID INNER JOIN Courses ON FacultyCourses.CourseID = Courses.CourseID;
++--------+-----------+------------+------------------------+-----------+------------+-----------------+--------+----------+----------+----------+-----------+------------+--------------+-----------------------------------------------------+
+| EMPLID | FirstName | LastName   | Email                  | BirthYear | HireDate   | FacultyCourseID | EMPLID | CourseID | CourseID | DiscName | CourseNum | NumCredits | FirstOffered | CourseTitle                                         |
++--------+-----------+------------+------------------------+-----------+------------+-----------------+--------+----------+----------+----------+-----------+------------+--------------+-----------------------------------------------------+
+|      1 | Tomeka    | Hilder     | t.hilder@gmail.com     |      1981 | 2018-01-01 |              20 |      1 |        6 |        6 | IFSM     |       201 |          6 | 2005-06-01   | Concepts and Applications of Information Technology |
+|      2 | Yuriko    | Larrabee   | y.larrabee@gmail.com   |      1990 | 2015-01-02 |              19 |      2 |        7 |        7 | LIBS     |       150 |          6 | 1999-06-01   | Introduction to Research                            |
+|      3 | Jeanetta  | Hyneman    | j.hyneman@gmail.com    |      1959 | 2010-04-02 |              18 |      3 |        8 |        8 | NUTR     |       100 |          6 | 2003-06-01   | Elements of Nutrition                               |
+|      4 | John      | Smith      | j.smith@gmail.com      |      1967 | 2001-04-10 |              17 |      4 |       20 |       20 | SDEV     |       460 |          6 | 2018-06-01   | Software Security Testing                           |
+|      5 | Chris     | Sheppard   | c.sheppard@gmail.com   |      1985 | 2005-09-12 |              16 |      5 |       19 |       19 | SDEV     |       400 |          6 | 2002-06-01   | Secure Programming in the Cloud                     |
+|      6 | John      | Jacobs     | j.jacobs@gmail.com     |      1999 | 2019-06-01 |              15 |      6 |       18 |       18 | WRTG     |       391 |          6 | 2016-06-01   | Advanced Research Writing                           |
+|      7 | Sarah     | Conner     | s.conner@gmail.com     |      1960 | 1994-02-01 |              14 |      7 |       17 |       17 | SDEV     |       360 |          6 | 2001-06-01   | Secure Software Engineering                         |
+|      8 | Julia     | Macgregor  | j.macgregor@gmail.com  |      1998 | 2019-05-14 |              13 |      8 |       16 |       16 | SDEV     |       250 |          6 | 2016-06-01   | Database Security                                   |
+|      9 | Zach      | Brown      | z.brown@gmail.com      |      1959 | 1999-11-04 |              12 |      9 |       15 |       15 | GVPT     |       170 |          6 | 2004-06-01   | American Government                                 |
+|     10 | Leo       | Davinci    | l.davinci@gmail.com    |      1990 | 2010-08-24 |              11 |     10 |       14 |       14 | SDEV     |       325 |          6 | 2016-06-01   | Detecting Software Vulnerabilities                  |
+|     10 | Leo       | Davinci    | l.davinci@gmail.com    |      1990 | 2010-08-24 |              21 |     10 |        5 |        5 | HIST     |       156 |          6 | 2000-06-01   | History of the United States to 1865                |
+|     11 | Uncle     | Sam        | u.sam@gmail.com        |      1975 | 2000-07-04 |              10 |     11 |       13 |       13 | BIOL     |       103 |          6 | 2007-06-01   | Introduction to Biology                             |
+|     11 | Uncle     | Sam        | u.sam@gmail.com        |      1975 | 2000-07-04 |              22 |     11 |        4 |        4 | CMIS     |       320 |          6 | 2014-06-01   | Relational Database Concepts & Applications         |
+|     12 | Tom       | Hanks      | t.hanks@gmail.com      |      1961 | 2013-08-13 |               9 |     12 |       12 |       12 | SDEV     |       300 |          6 | 2014-06-01   | Building Secure Web Applications                    |
+|     12 | Tom       | Hanks      | t.hanks@gmail.com      |      1961 | 2013-08-13 |              23 |     12 |        1 |        1 | CMIS     |       102 |          6 | 2015-06-01   | Intro Problem Solving Alg Design                    |
+|     13 | Kim       | Possible   | k.possible@gmail.com   |      2000 | 2019-06-04 |               8 |     13 |       11 |       11 | HIST     |       125 |          6 | 2007-06-01   | Technological Transformations                       |
+|     13 | Kim       | Possible   | k.possible@gmail.com   |      2000 | 2019-06-04 |              24 |     13 |        2 |        2 | CMIS     |       141 |          6 | 2013-06-01   | Introductory Programming                            |
+|     14 | Dora      | Explorer   | d.explorer@gmail.com   |      1986 | 2013-12-07 |               7 |     14 |       10 |       10 | WRTG     |       112 |          6 | 2001-06-01   | Intro to Academic Writing II                        |
+|     14 | Dora      | Explorer   | d.explorer@gmail.com   |      1986 | 2013-12-07 |              25 |     14 |        3 |        3 | CMIS     |       242 |          6 | 2013-06-01   | Intermediate Programming                            |
+|     15 | Ben       | Stiller    | b.stiller@gmail.com    |      1976 | 1999-10-31 |               6 |     15 |        9 |        9 | WRTG     |       111 |          6 | 2000-06-01   | Intro to Academic Writing I                         |
+|     16 | Matt      | Damon      | m.damon@gmail.com      |      1988 | 2005-02-28 |               5 |     16 |        8 |        8 | NUTR     |       100 |          6 | 2003-06-01   | Elements of Nutrition                               |
+|     17 | Christian | Slater     | c.slater@gmail.com     |      1989 | 2016-05-05 |               4 |     17 |        7 |        7 | LIBS     |       150 |          6 | 1999-06-01   | Introduction to Research                            |
+|     18 | Julie     | Hemmingway | j.hemmingway@gmail.com |      1995 | 2008-11-23 |               3 |     18 |        6 |        6 | IFSM     |       201 |          6 | 2005-06-01   | Concepts and Applications of Information Technology |
+|     19 | Shaynia   | Twain      | s.twain@gmail.com      |      1976 | 1994-01-24 |               2 |     19 |        5 |        5 | HIST     |       156 |          6 | 2000-06-01   | History of the United States to 1865                |
+|     20 | Adam      | Apple      | a.apple@gmail.com      |      1996 | 2013-05-25 |               1 |     20 |        1 |        1 | CMIS     |       102 |          6 | 2015-06-01   | Intro Problem Solving Alg Design                    |
++--------+-----------+------------+------------------------+-----------+------------+-----------------+--------+----------+----------+----------+-----------+------------+--------------+-----------------------------------------------------+
+25 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!

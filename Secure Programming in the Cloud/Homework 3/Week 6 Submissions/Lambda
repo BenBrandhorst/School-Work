@@ -1,0 +1,68 @@
+#File: Week6Homework.py
+#Author: Ben Brandhorst
+#Date: April 21st 2020
+#Purpose: Week 6 Homework
+import boto3
+import json
+import re
+from boto3.dynamodb.conditions import Key, Attr
+
+# Function to query the dynamodb and return the contained records for sports games played
+def queryDB(sport, team):
+    dynamodb = boto3.resource('dynamodb')
+    message = []
+    table = dynamodb.Table('Sports')
+    response = table.query(IndexName= 'Team-Sort-index',
+    # Uses .capitalize() to prevent mismatch if user enters a lowercase team name
+    KeyConditionExpression=Key('Team').eq(team.capitalize()))
+
+    # Uses .capitalize() again to match against hard coded record types stored in our database
+    while sport.capitalize() !="Baseball" and sport.capitalize() != "Basketball" and sport.capitalize() != "Hockey":
+       message.append(sport)
+       message.append(' is not a valid Sport input, please try again with Baseball, Hockey, or Basketball,')
+       return message
+    # Returns a message if the user supplies a correct input for Sport but does not select a team records are stored on.
+    while not response['Items']:
+        if sport.capitalize() =="Baseball":
+            message.append(team)
+            message.append(" is not a valid team, please try again using Angels, Athletics, Reds, Padres, or Dodgers.")
+            return message
+        elif sport.capitalize() =="Basketball":
+            message.append(team)
+            message.append(" is not a valid team, please try again using Lakers, Clippers, Warriors, Jazz, or Nets.")
+            return message
+        elif sport.capitalize() =="Hockey":
+            message.append(team)
+            message.append(" is not a valid team, please try again user Coyotes, Ducks, Golden Knights, Kings, or Oilers.")
+            return message
+    else:
+        greeting = ('For the sport of ', sport, ' the ', team, ' last 5 game results include:')
+        # json.dumps is used to hold query return in str format
+        y = json.dumps(greeting,separators=(',', ':'))
+        # regex is used to strip extra characters from the string
+        regex = re.compile('[\".,]')
+        z = regex.sub('', y)
+        # finally the results are used to append message for an appropriate greeting
+        message.append(z)
+        for i in response['Items']:
+            # Some code is duplicated here to store query results as str, strip characters, and append
+            # I couldn't think of a more elegant solution
+            x =('On ' ,i['Date'], ' the ',i['Team'],' ',i['Win'], ' against the ' ,i['Opponent'], ' with a score of ',i['Score'],)
+            y = json.dumps(x,separators=(',', ':'))
+            regex = re.compile('[\".,]')
+            z = regex.sub('', y)
+            message.append(z)
+        return message
+
+# the lambda_handler executes the code in the lambda
+def lambda_handler(event, context):
+    # Sport and Team variables are taken in as event inputs
+    sport = event['Sport']
+    team = event['Team']
+    # Store the function return
+    message = queryDB(sport, team)
+    # Display the results
+    return {
+        'Results' : message
+
+    } 

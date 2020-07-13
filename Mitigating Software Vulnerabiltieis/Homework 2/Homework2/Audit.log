@@ -1,0 +1,22 @@
+Apr 12, 2020 5:43:41 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 5:46:00 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 5:54:15 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 5:54:48 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 5:58:19 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 6:04:38 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 6:04:50 PM Homework2.AuditLogger logInfo
+INFO: The login button was pressed by someone using a username of sdevadmin
+Apr 12, 2020 6:05:25 PM Homework2.AuditLogger logInfo
+INFO: sdevadmin successfully logged in
+Apr 12, 2020 6:20:19 PM Homework2.AuditLogger logInfo
+INFO: The Program has started
+Apr 12, 2020 6:20:41 PM Homework2.AuditLogger logInfo
+INFO: The login button was pressed by someone using a username of sdevadmin
+Apr 12, 2020 6:26:33 PM Homework2.AuditLogger logInfo
+INFO: sdevadmin successfully logged in
